@@ -150,16 +150,6 @@ class HashMap {
     }
 }
 
-// const hash = new Hashmap();
-// hash.set("grape", 'red')
-// hash.set("hat", 'blue')
-// console.log(hash.buckets[11].headNode())
-// hash.remove("hat")
-// console.log(hash.buckets[11].headNode())
-// console.log(hash.length())
-// console.log(hash.keys())
-// console.log(hash.values())
-// console.log(hash.entries())
 
 const test = new HashMap() 
 test.set('apple', 'red')
@@ -179,4 +169,4 @@ console.log(test.keys())
 console.log(test.values())
 console.log(test.remove("kite"))
 console.log(test.entries())
-console.log(test.get("kite"))
+console.log(test.has("frog"))
