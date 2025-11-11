@@ -49,7 +49,7 @@ class HashMap {
         if (bucket === undefined || bucket === null) return null;
         const keyObj = { key: key }
         const listIndex = bucket.find(keyObj.key)
-        return bucket.at(listIndex)?.value?.value;
+        return bucket.at(listIndex)?.value?.value || null;
     }
 
     getBucket(key) {
@@ -177,4 +177,4 @@ console.log(test.keys())
 console.log(test.values())
 console.log(test.remove("kite"))
 console.log(test.entries())
-console.log(test.has("apple"))
+console.log(test.get("kite"))
