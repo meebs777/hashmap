@@ -9,13 +9,14 @@ class HashMap {
 
     hash(key) {
         let hashCode = 0;
-
+        let index = 0;
         const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
             hashCode = primeNumber * hashCode + key.charCodeAt(i);
+            index = hashCode % this.capacity;
         }
 
-        return hashCode;
+        return {hashCode, index};
     }
 
     set(key, value) {
@@ -27,7 +28,7 @@ class HashMap {
                 this.set(entries[index][0], entries[index][1]);
             }
         }
-        const hashIndex = this.hash(key) % this.capacity;
+        const hashIndex = this.hash(key).index
         const data = {key,value}
         let bucket = this.buckets[hashIndex]
         if (bucket === undefined || bucket === null) {
@@ -53,7 +54,7 @@ class HashMap {
     }
 
     getBucket(key) {
-        const hashIndex = this.hash(key) % this.capacity;
+        const hashIndex = this.hash(key).index;
         return this.buckets[hashIndex];
     }
 
@@ -66,12 +67,13 @@ class HashMap {
         const bucket = this.getBucket(key);
         if (bucket.size() === 1) {
             bucket.pop()
-            return 
+            return true;
         } else {
             const keyObj = { key: key };
             const listIndex = bucket.find(keyObj.key);
             bucket.removeAt(listIndex);
         }
+        return true;
     }
 
     length() {
